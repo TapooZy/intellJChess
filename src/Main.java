@@ -39,12 +39,15 @@ public class  Main {
     public static void main(String[] args) {
         Board board = new Board();
 //        board.getBoard()[0][4] = new Queen('w', 0, 4);
-//        board.getBoard()[0][0] = new King('w', 0, 0);
+        board.getBoard()[6][3] = new Pawn('w', 6, 3);
+        board.getBoard()[5][4] = new Pawn('b', 5, 4);
+        board.getBoard()[5][2] = new Pawn('w', 5, 2);
+//        board.getBoard()[6][5] = new King('b', 6, 5);
 //        board.getBoard()[4][7] = new Pawn('b', 4, 7);
-        board.getBoard()[6][4] = new Pawn('b', 6, 4);
-        board.getBoard()[6][7] = new Queen('w', 6, 7);
-        board.getBoard()[7][7] = new King('b', 7, 4);
-        board.getBoard()[5][7] = new Rook('b', 7, 0);
+//        board.getBoard()[6][4] = new Pawn('b', 6, 4);
+//        board.getBoard()[6][7] = new Queen('w', 6, 7);
+//        board.getBoard()[7][7] = new King('b', 7, 4);
+//        board.getBoard()[5][7] = new Rook('b', 7, 0);
 //        board.getBoard()[0][4] = new King('b', 0, 4);
 //        board.getBoard()[3][4] = new Pawn('b', 5, 4);
 //        board.printBoard();
@@ -57,7 +60,7 @@ public class  Main {
 //        printMoves(board.getBoard()[4][4], board);
 //        board.getBoard()[4][4].move(board);
         board.printBoard();
-        printMoves(board.getBoard()[6][7], board);
+        printMoves(board.getBoard()[6][3], board);
 
     }
 }

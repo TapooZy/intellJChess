@@ -32,23 +32,20 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public void move(Board board){
-        Scanner in = new Scanner(System.in);
-        int rowCol, desirableRow, desirableCol, size;
-        rowCol = in.nextInt();
-        desirableRow = rowCol/10;
-        desirableCol = rowCol%10;
-        int[] desirableMove = {desirableRow, desirableCol};
+    public boolean move(Board board, int row, int col){
+        int size;
         int[] availableMove;
         Queue<Integer> moves = board.getBoard()[this.row][this.col].getPossibleMoves(board);
         size = moves.getSize();
         for (int i = 0; i < size; i++) {
             availableMove = moves.remove();
-            if (desirableMove[0] == availableMove[0] && desirableMove[1] == availableMove[1]){
-                board.getBoard()[desirableRow][desirableCol] = this;
+            if (row == availableMove[0] && col == availableMove[1]){
+                board.getBoard()[row][col] = this;
                 board.getBoard()[this.row][this.col] = null;
+                this.setRow(row);
+                this.setCol(col);
                 board.printBoard();
-                for (int k = 0; k < 7; i++) {
+                for (int k = 0; k < 7; k++) {
                     for (int j = 0; j < 7; j++) {
                         if (board.getBoard()[k][j] != null){
                             if (board.getBoard()[k][j].getWasFirstMove()){
@@ -57,20 +54,9 @@ public class Bishop extends Piece {
                         }
                     }
                 }
-                break;
+                return true;
             }
         }
-        System.out.println("This is not a possible move");
-    }
-
-    @Override
-    public void move(Board board, int row, int col){
-        int formerRow, formerCol;
-        formerRow = this.row;
-        formerCol = this.col;
-        setRow(row);
-        setCol(col);
-        board.getBoard()[formerRow][formerCol] = null;
-        board.getBoard()[row][col] = this;
+        return false;
     }
 }
