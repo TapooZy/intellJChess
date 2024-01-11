@@ -43,7 +43,6 @@ public class Rook extends Piece{
                 board.getBoard()[row][col] = this;
                 board.getBoard()[this.row][this.col] = null;
                 this.setRow(row);
-                this.setCol(col);
                 board.printBoard();
                 for (int k = 0; k < 7; k++) {
                     for (int j = 0; j < 7; j++) {

@@ -8,12 +8,14 @@ public class Engine {
         board.startGame();
     }
 
-    public void game(Board board){
+    public void game(){
         int Piece, Move, row, col;
         String color = "White";
+        char c = 'w';
         Piece piece;
         Scanner in = new Scanner(System.in);
         while(board.findKing('b') != null && board.findKing('w') != null){
+            board.printBoard();
             System.out.println(color + " move");
             while (true) {
                 System.out.println("Which piece do you want to move");
@@ -21,8 +23,13 @@ public class Engine {
                 row = Piece / 10;
                 col = Piece % 10;
                 if (board.getBoard()[row][col] != null){
-                    piece = board.getBoard()[row][col];
-                    break;
+                    if (board.getBoard()[row][col].getColor() == c) {
+                        piece = board.getBoard()[row][col];
+                        break;
+                    }
+                    else {
+                        System.out.println("Wrong color");
+                    }
                 }
                 else {
                     System.out.println("This square is empty");
@@ -42,9 +49,11 @@ public class Engine {
             }
             if (color.equals("White")){
                 color = "Black";
+                c = 'b';
             }
             else {
                 color = "White";
+                c = 'w';
             }
         }
     }

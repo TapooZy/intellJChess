@@ -121,7 +121,7 @@ public class Pawn extends Piece{
     }
     @Override
     public boolean move(Board board, int row, int col){
-        int size, formerRow;
+        int size, formerRow, formerCol;
         int[] availableMove;
         Queue<Integer> moves = board.getBoard()[this.row][this.col].getPossibleMoves(board);
         size = moves.getSize();
@@ -129,11 +129,17 @@ public class Pawn extends Piece{
             availableMove = moves.remove();
             if (row == availableMove[0] && col == availableMove[1]){
                 board.getBoard()[row][col] = this;
-                board.getBoard()[this.row][this.col] = null;
                 formerRow = this.row;
+                formerCol = this.col;
+                if ((formerCol == col - 1 || formerCol == col + 1) && color == 'w'){
+                    board.getBoard()[row+1][col] = null;
+                }
+                else if ((formerCol == col - 1 || formerCol == col + 1) && color == 'b'){
+                    board.getBoard()[row-1][col] = null;
+                }
+                board.getBoard()[this.row][this.col] = null;
                 this.setRow(row);
                 this.setCol(col);
-                board.printBoard();
                 for (int k = 0; k < 7; k++) {
                     for (int j = 0; j < 7; j++) {
                         if (board.getBoard()[k][j] != null){
